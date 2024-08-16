@@ -19,11 +19,6 @@ footer {
   padding: 0 !important;
 }
 
-img {
-  object-fit: cover;
-  object-position: center;
-}
-
 .content {
   min-height: calc(100vh - 64px - 50px);
   padding: 15px 0;
@@ -41,6 +36,11 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.card-title {
+  margin: 0 auto;
+  text-align: center;
 }
 
 input[type = search] {

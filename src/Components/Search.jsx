@@ -6,6 +6,7 @@ class Search extends React.Component {
     this.state = {
       search: '',
     };
+    this.handleSearch = props.handleSearch;
   }
 
   handleInput = (e) => {
@@ -25,6 +26,7 @@ class Search extends React.Component {
               placeholder="Search a movie"
               value={search}
               onChange={this.handleInput}
+              onKeyDown={(e) => this.handleSearch(e, search)}
             />
           </div>
         </div>

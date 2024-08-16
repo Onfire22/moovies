@@ -6,12 +6,14 @@ const Movie = ({ card }) => {
     Year,
   } = card;
 
+  // ToDo: no image 
+
   return (
     <li className="card">
       <div className="card-image">
         <img src={Poster} alt="poster" />
-        <span className="card-title">{Title}</span>
       </div>
+      <p className="card-title">{Title}</p>
       <div className="card-content">
         <p>{Type}</p>
         <p>{Year}</p>
