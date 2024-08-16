@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import Movies from "../Movies";
 import Preloader from "../Preloader";
+import Search from "../Search";
 
 class Main extends React.Component {
   constructor(props) {
@@ -23,13 +24,14 @@ class Main extends React.Component {
   render() {
     const { cards } = this.state;
     return (
-      cards.length > 0 
-      ? 
-      (<main className="container content">
+      <main className="container content">
+        <Search />
+        {cards.length > 0
+        ? 
         <Movies cards={cards} />
-      </main>)
-      :
-      <Preloader />
+        :
+        <Preloader />}
+      </main>
     );
   }
 }

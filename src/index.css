@@ -42,3 +42,23 @@ img {
   align-items: center;
   justify-content: space-between;
 }
+
+input[type = search] {
+  border-bottom: 1px solid #64b5f6 !important;
+  transition: 0.3s ease-in;
+}
+
+input[type = search]::placeholder {
+  color: #64b5f6;
+  transition: 0.3s ease-in;
+}
+
+input[type = search]:focus {
+  border-bottom: 1px solid #1976d2 !important;
+  transition: 0.3s ease-in;
+}
+
+input[type = search]:focus::placeholder {
+  color: #1976d2;
+  transition: 0.3s ease-in;
+}
