@@ -10,37 +10,39 @@ class Main extends React.Component {
     super(props);
     this.state = {
       cards: [],
+      loading: true,
     };
   }
 
   async componentDidMount() {
     try {
       const response = await axios.get('http://www.omdbapi.com/?apikey=972a7760&s=matrix');
-      this.setState({ cards: response.data.Search });
+      this.setState({ cards: response.data.Search, loading: false, });
     } catch (e) {
       console.log(e);
     }
   }
 
   handleSearch = async (query, type) => {
+    this.setState({ loading: true, })
     try {
       const response = await axios.get(getUrl(query, type));
-      this.setState({ cards: response.data.Search });
+      this.setState({ cards: response.data.Search, loading: false, });
     } catch (e) {
       console.log(e);
     }
   }
 
   render() {
-    const { cards } = this.state;
+    const { cards, loading } = this.state;
     return (
       <main className="container content">
         <Search handleSearch={this.handleSearch} />
-        {cards
-        ? 
-        <Movies cards={cards} />
+        {loading
+        ?
+        <Preloader />
         :
-        <Preloader />}
+        <Movies cards={cards} />}
       </main>
     );
   }
