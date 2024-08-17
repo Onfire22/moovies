@@ -1,3 +1,5 @@
+import image from '../no-image.png';
+
 const Movie = ({ card }) => {
   const { 
     Poster,
@@ -6,12 +8,10 @@ const Movie = ({ card }) => {
     Year,
   } = card;
 
-  // ToDo: no image 
-
   return (
     <li className="card">
       <div className="card-image">
-        <img src={Poster} alt="poster" />
+        <img src={Poster === 'N/A' ? image : Poster} alt="poster" />
       </div>
       <p className="card-title">{Title}</p>
       <div className="card-content">
