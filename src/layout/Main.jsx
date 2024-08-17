@@ -1,9 +1,9 @@
 import React from "react";
 import axios from "axios";
-import getUrl from "../../urlBuilder";
-import Movies from "../Movies";
-import Preloader from "../Preloader";
-import Search from "../Search";
+import getUrl from "../helpers/urlBuilder";
+import Movies from "../Components/Movies";
+import Preloader from "../Components/Preloader";
+import Search from "../Components/Search";
 
 class Main extends React.Component {
   constructor(props) {
@@ -23,6 +23,9 @@ class Main extends React.Component {
   }
 
   handleSearch = async (e, query) => {
+    if (!query) {
+      return;
+    }
     if (e.key === 'Enter') {
       try {
         const response = await axios.get(getUrl(query));
@@ -38,7 +41,7 @@ class Main extends React.Component {
     return (
       <main className="container content">
         <Search handleSearch={this.handleSearch} />
-        {cards.length > 0
+        {cards
         ? 
         <Movies cards={cards} />
         :

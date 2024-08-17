@@ -1,4 +1,4 @@
-import image from '../no-image.png';
+import image from '../helpers/no-image.png';
 
 const Movie = ({ card }) => {
   const { 
