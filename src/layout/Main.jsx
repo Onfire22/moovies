@@ -22,9 +22,9 @@ class Main extends React.Component {
     }
   }
 
-  handleSearch = async (query) => {
+  handleSearch = async (query, type) => {
     try {
-      const response = await axios.get(getUrl(query));
+      const response = await axios.get(getUrl(query, type));
       this.setState({ cards: response.data.Search });
     } catch (e) {
       console.log(e);

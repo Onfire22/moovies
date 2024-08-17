@@ -5,6 +5,7 @@ class Search extends React.Component {
     super(props);
     this.state = {
       search: '',
+      type: '',
     };
     this.handleSearch = props.handleSearch;
   }
@@ -15,17 +16,22 @@ class Search extends React.Component {
   }
 
   handleKey = ({ key }) => {
-    const { search } = this.state;
+    const { search, type } = this.state;
     if (!search) {
       return;
     }
     if (key === 'Enter') {
-      this.handleSearch(search);
+      this.handleSearch(search, type);
     }
+  }
+
+  handleRadio = (e) => {
+    const { value } = e.target;
+    this.setState({ type: value });
   }
   
   render() {
-    const { search } = this.state;
+    const { search, type } = this.state;
     return(
       <div className="row">
         <div className="col s12">
@@ -39,11 +45,46 @@ class Search extends React.Component {
               onKeyDown={(e) => this.handleKey(e)}
             />
             <button 
-              onClick={() => this.handleSearch(search)}
+              onClick={() => this.handleSearch(search, type)}
               className="btn searchBtn blue darken-1"
             >
               Search
             </button>
+          </div>
+          <div className="radio_container">
+            <label>
+              <input
+                className="with-gap"
+                name="group3"
+                type="radio"
+                value=""
+                onChange={this.handleRadio}
+                checked={!type}
+                />
+              <span>All</span>
+            </label>
+            <label>
+              <input
+                className="with-gap"
+                name="group3"
+                type="radio"
+                value="movie"
+                onChange={this.handleRadio}
+                checked={type === 'movie'}
+              />
+              <span>Movies</span>
+            </label>
+            <label>
+              <input
+                className="with-gap"
+                name="group3"
+                type="radio"
+                value="series"
+                onChange={this.handleRadio}
+                checked={type === 'series'}
+              />
+              <span>Series</span>
+            </label>
           </div>
         </div>
       </div>
