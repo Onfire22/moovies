@@ -22,17 +22,12 @@ class Main extends React.Component {
     }
   }
 
-  handleSearch = async (e, query) => {
-    if (!query) {
-      return;
-    }
-    if (e.key === 'Enter') {
-      try {
-        const response = await axios.get(getUrl(query));
-        this.setState({ cards: response.data.Search });
-      } catch (e) {
-        console.log(e);
-      }
+  handleSearch = async (query) => {
+    try {
+      const response = await axios.get(getUrl(query));
+      this.setState({ cards: response.data.Search });
+    } catch (e) {
+      console.log(e);
     }
   }
 

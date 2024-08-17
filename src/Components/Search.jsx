@@ -13,6 +13,16 @@ class Search extends React.Component {
     const { value } = e.target;
     this.setState({ search: value });
   }
+
+  handleKey = ({ key }) => {
+    const { search } = this.state;
+    if (!search) {
+      return;
+    }
+    if (key === 'Enter') {
+      this.handleSearch(search);
+    }
+  }
   
   render() {
     const { search } = this.state;
@@ -26,8 +36,14 @@ class Search extends React.Component {
               placeholder="Search a movie"
               value={search}
               onChange={this.handleInput}
-              onKeyDown={(e) => this.handleSearch(e, search)}
+              onKeyDown={(e) => this.handleKey(e)}
             />
+            <button 
+              onClick={() => this.handleSearch(search)}
+              className="btn searchBtn blue darken-1"
+            >
+              Search
+            </button>
           </div>
         </div>
       </div>
