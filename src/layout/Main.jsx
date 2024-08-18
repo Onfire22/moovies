@@ -1,51 +1,48 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { buildInitialUrl, buildQueryUrl } from "../helpers/urlBuilders";
 import Movies from "../Components/Movies";
 import Preloader from "../Components/Preloader";
 import Search from "../Components/Search";
 
-class Main extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cards: [],
-      loading: true,
+const Main = () => {
+  const [cards, setCards] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const getCards = async () => {
+      try {
+        const response = await axios.get(buildInitialUrl());
+        setCards(response.data.Search);
+        setLoading(false);
+      } catch (e) {
+        console.log(e);
+      }
     };
-  }
+    getCards();
+  }, []);
 
-  async componentDidMount() {
-    try {
-      const response = await axios.get(buildInitialUrl());
-      this.setState({ cards: response.data.Search, loading: false, });
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  handleSearch = async (query, type) => {
-    this.setState({ loading: true, })
+  const handleSearch = async (query, type) => {
+    setLoading(true);
     try {
       const response = await axios.get(buildQueryUrl(query, type));
-      this.setState({ cards: response.data.Search, loading: false, });
+      setCards(response.data.Search);
+      setLoading(false);
     } catch (e) {
       console.log(e);
     }
-  }
+  };
 
-  render() {
-    const { cards, loading } = this.state;
-    return (
-      <main className="container content">
-        <Search handleSearch={this.handleSearch} />
-        {loading
-        ?
-        <Preloader />
-        :
-        <Movies cards={cards} />}
-      </main>
-    );
-  }
-}
+  return (
+    <main className="container content">
+      <Search handleSearch={handleSearch} />
+      {loading
+      ?
+      <Preloader />
+      :
+      <Movies cards={cards} />}
+    </main>
+  );
+};
 
 export default Main;
