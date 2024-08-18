@@ -7,7 +7,7 @@ const Search = ({ handleSearch }) => {
   const handleInput = (e) => {
     const { value } = e.target;
     setSearch(value);
-  }
+  };
 
   const handleKey = ({ key }) => {
     if (!search) {
@@ -16,13 +16,13 @@ const Search = ({ handleSearch }) => {
     if (key === 'Enter') {
       handleSearch(search, type);
     }
-  }
+  };
 
   const handleRadio = (e) => {
     const { value } = e.target;
     setType(value);
     handleSearch(search, value);
-  }
+  };
   
   return(
     <div className="row">
@@ -81,6 +81,6 @@ const Search = ({ handleSearch }) => {
       </div>
     </div>
   );
-}
+};
 
 export default Search;
