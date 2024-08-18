@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import getUrl from "../helpers/urlBuilder";
+import { buildInitialUrl, buildQueryUrl } from "../helpers/urlBuilders";
 import Movies from "../Components/Movies";
 import Preloader from "../Components/Preloader";
 import Search from "../Components/Search";
@@ -16,7 +16,7 @@ class Main extends React.Component {
 
   async componentDidMount() {
     try {
-      const response = await axios.get('http://www.omdbapi.com/?apikey=972a7760&s=matrix');
+      const response = await axios.get(buildInitialUrl());
       this.setState({ cards: response.data.Search, loading: false, });
     } catch (e) {
       console.log(e);
@@ -26,7 +26,7 @@ class Main extends React.Component {
   handleSearch = async (query, type) => {
     this.setState({ loading: true, })
     try {
-      const response = await axios.get(getUrl(query, type));
+      const response = await axios.get(buildQueryUrl(query, type));
       this.setState({ cards: response.data.Search, loading: false, });
     } catch (e) {
       console.log(e);
