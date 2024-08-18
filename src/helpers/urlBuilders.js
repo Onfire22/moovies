@@ -28,9 +28,9 @@ const getRandomMovie = () => {
 
 const buildInitialUrl = () => {
   const randomMovie = getRandomMovie();
-  return `http://www.omdbapi.com/?apikey=${API_KEY}&s=${randomMovie}`;
+  return `https://www.omdbapi.com/?apikey=${API_KEY}&s=${randomMovie}`;
 };
 
-const buildQueryUrl = (query = 'matrix', type = '') => `http://www.omdbapi.com/?apikey=${API_KEY}&s=${query}&type=${type}`;
+const buildQueryUrl = (query = 'matrix', type = '') => `https://www.omdbapi.com/?apikey=${API_KEY}&s=${query}&type=${type}`;
 
 export { buildInitialUrl, buildQueryUrl };
